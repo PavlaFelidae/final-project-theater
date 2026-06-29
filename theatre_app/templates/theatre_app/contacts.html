@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты — Divadlo Třesk!</title>
+    <link rel="stylesheet" href="{% static 'theatre_app/css/contacts.css' %}">
+</head>
+<body>
+
+    <header>
+        <a href="/"><img src="{% static 'theatre_app/images/logo-tresk.png' %}" alt="Logo" style="max-height: 50px;"></a>
+        <nav>
+            <a href="/">Главная</a>
+            <a href="/program-page/">Программа</a>
+            <a href="/o-nas/">О нас</a>
+            <a href="/reserve-page/">Билеты</a>
+            <a href="/contacts-page/">Контакты</a>
+            <a href="/partners/">Партнеры</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="info-box">
+            <h2>Как нас найти</h2>
+            <p><strong>📍 Адрес:</strong> Nekvasilova 625, 186 00 Praha 8-Karlín</p>
+            <p><strong>📞 Телефон:</strong> +420 727 926 810</p>
+            <p><strong>✉️ Email:</strong> teatr.tresk@gmail.com</p>
+            <p><a href="https://www.instagram.com/teatr.tresk/">Instagram</a></p>
+            <p><a href="https://www.facebook.com/p/Театр-Треск-61552132769348/">Facebook</a></p>
+        </div>
+
+        <div class="form-box">
+            <h2>Напишите нам</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label>Ваше имя</label>
+                    <input type="text" id="contact-name" required placeholder="Алексей">
+                </div>
+                <div class="form-group">
+                    <label>Ваш Email</label>
+                    <input type="email" id="contact-email" required placeholder="alex@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Сообщение</label>
+                    <textarea id="contact-message" required placeholder="Ваш вопрос или отзыв..."></textarea>
+                </div>
+                <button type="submit">Отправить сообщение</button>
+                <div id="status-box" class="status-msg"></div>
+            </form>
+        </div>
+
+        <footer>
+            © 2026 Театр Třesk!. Все права защищены.
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const statusBox = document.getElementById('status-box');
+            
+            const data = {
+                name: document.getElementById('contact-name').value,
+                email: document.getElementById('contact-email').value,
+                message: document.getElementById('contact-message').value
+            };
+
+            try {
+                const response = await fetch('/api/contact/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                statusBox.style.display = 'block';
+                
+                if (response.ok) {
+                    statusBox.style.backgroundColor = '#2e7d32';
+                    statusBox.style.color = '#fff';
+                    statusBox.innerText = 'Сообщение успешно отправлено!';
+                    document.getElementById('contact-form').reset();
+                } else {
+                    statusBox.style.backgroundColor = '#c62828';
+                    statusBox.style.color = '#fff';
+                    statusBox.innerText = 'Ошибка при отправке сообщения.';
+                }
+            } catch (err) {
+                statusBox.style.display = 'block';
+                statusBox.style.backgroundColor = '#c62828';
+                statusBox.innerText = 'Ошибка соединения с сервером.';
+            }
+        });
+    </script>
+</body>
+</html>

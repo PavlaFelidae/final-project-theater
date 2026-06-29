@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наши Партнеры — Divadlo Třesk!</title>
+    <link rel="stylesheet" href="{% static 'theatre_app/css/partners.css' %}">
+</head>
+<body>
+
+    <header>
+        <a href="/"><img src="{% static 'theatre_app/images/logo-tresk.png' %}" alt="Logo" style="max-height: 50px;"></a>
+        <nav>
+            <a href="/">Главная</a>
+            <a href="/program-page/">Программа</a>
+            <a href="/o-nas/">О нас</a>
+            <a href="/reserve-page/">Билеты</a>
+            <a href="/contacts-page/">Контакты</a>
+            <a href="/partners/">Партнеры</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2 style="color: var(--accent-color);">Партнеры и спонсоры театра Třesk!</h2>
+        <p style="color: var(--text-muted);">Мы бесконечно благодарны нашим спонсорам и партнёрам за возможность организации нашего театра!</p>
+        
+        <div class="partner-card">
+            <h3>💚 Компьютерная Академия IT STEP Academy</h3>
+            <p>Качественное обучение IT специальностям для взрослых и детей в Праге</p>
+            <a href="https://praha.itstep.org/ru" target="_blank" class="btn-link">Посетить сайт Академии →</a>
+        </div>
+        <div class="partner-card">
+            <h3>💚 Dual Vision Production</h3>
+            <p>Video and Photo Production Studio - Prague</p>
+            <a href="https://www.instagram.com/dual.vision.production/?utm_source=ig_web_button_share_sheet" target="_blank" class="btn-link">Посетить сайт Dual Vision Production →</a>
+        </div>
+
+        <footer>
+            © 2026 Театр Třesk!. Все права защищены.
+        </footer>
+    </div>
+
+</body>
+</html>

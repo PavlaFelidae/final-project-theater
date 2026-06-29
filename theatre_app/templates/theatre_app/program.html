@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Афиша — Divadlo Třesk!</title>
+    <link rel="stylesheet" href="{% static 'theatre_app/css/program.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <a href="/"><img src="{% static 'theatre_app/images/logo-tresk.png' %}" alt="Logo"
+                style="max-height: 50px;"></a>
+        <nav>
+            <a href="/">Главная</a>
+            <a href="/program-page/">Программа</a>
+            <a href="/o-nas/">О нас</a>
+            <a href="/reserve-page/">Билеты</a>
+            <a href="/contacts-page/">Контакты</a>
+            <a href="/partners/">Партнеры</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Репертуар театра</h2>
+        <p class="subtitle">Нажмите на название спектакля, чтобы открыть подробности в нашем Instagram</p>
+
+        <div class="program-list">
+
+            <div class="play-card">
+                <h3 class="play-title">
+                    <a href="https://www.instagram.com/p/CqbOeNSrapM/" target="_blank">"Присутствие кошки в доме" <span
+                            class="insta-badge">Instagram</span></a>
+                </h3>
+                <div class="play-meta">
+                    <span>📅 15 Июня 2026</span>
+                    <span>⏰ 19:00</span>
+                </div>
+                <p class="play-desc">
+                    Сентиментальность и абсурд. Запад и Восток. Где им всем сойтись, как не … под столом — в квартире
+                    очаровательной француженки, переводчицы Флоранс. </p>
+            </div>
+
+            <div class="play-card">
+                <h3 class="play-title">
+                    <a href="https://www.instagram.com/p/Cx5CoxFLGzT/" target="_blank">"ИСТИНА и НЕ" <span
+                            class="insta-badge">Instagram</span></a>
+                </h3>
+                <div class="play-meta">
+                    <span>📅 18 Июня 2026</span>
+                    <span>⏰ 19:30</span>
+                </div>
+                <p class="play-desc">Конфликт в том или ином виде сопровождает человека на протяжении всего времени его исторического существования. Войны, религиозная нетерпимость, различие нравственных установок и вообще неприятие ценностей иных сообществ и социальных групп – все это свидетельствует о том, что поводов для конфликтов хватало всегда. Казалось бы, если столкновение интересов обнаруживается в разные эпохи, конфликт как особого рода феномен издавна должен был пристально рассматриваться и изучаться. Однако разрабатывались больше практические способы разрешения подобных ситуаций. Несмотря на множество фактов, на первый взгляд, говорящих о значении конфликта в жизни общества, в философии (при осмыслении бытия как такового, и, как частного случая, человеческого бытия) проблема конфликта, как принципа, лежащего в основе человеческого существования, долгое время не рассматривалась. Более того, даже в настоящее время вопрос о том, является ли конфликтность атрибутом (неотъемлемым свойством) исторического развития общества, остается открытым.</p>
+            </div>
+
+            <div class="play-card">
+                <h3 class="play-title">
+                    <a href="https://www.instagram.com/p/C6tVhrlsRS5/" target="_blank">"Женщина в песках" <span
+                            class="insta-badge">Instagram</span></a>
+                </h3>
+                <div class="play-meta">
+                    <span>📅 22 Июня 2026</span>
+                    <span>⏰ 19:00</span>
+                </div>
+                <p class="play-desc">История, в которой мужчина и женщина обречены на сосуществование в замкнутом пространстве песчаной ямы. Что станет с ними в конце, со свободой каждого? </p>
+            </div>
+
+            <div class="play-card">
+                <h3 class="play-title">
+                    <a href="https://www.instagram.com/p/DCPK6YjMz9o/" target="_blank">"Фо Фи Фефь" <span
+                            class="insta-badge">Instagram</span></a>
+                </h3>
+                <div class="play-meta">
+                    <span>📅 25 Июня 2026</span>
+                    <span>⏰ 18:00</span>
+                </div>
+                <p class="play-desc">Спектакль в котором парадоксы, философия и ирония сплетаются в единое целое, а поиски ответов рожают новые вопросы. </p>
+            </div>
+
+            <div class="play-card">
+                <h3 class="play-title">
+                    <a href="https://www.instagram.com/p/DHS9ybNtejE/" target="_blank">"Кровь, любовь и риторика" <span
+                            class="insta-badge">Instagram</span></a>
+                </h3>
+                <div class="play-meta">
+                    <span>📅 29 Июня 2026</span>
+                    <span>⏰ 19:00</span>
+                </div>
+                <p class="play-desc">Абсурдистская, экзистенциальная трагикомедия, в которой второстепенные персонажи выходят на первый план, а сам Гамлет становится лишь фоном для размышлений о судьбе, свободе и смысле жизни.</p>
+            </div>
+
+            <div class="play-card">
+                <h3 class="play-title">
+                    <a href="https://www.instagram.com/p/DKCIkD2slPx/?img_index=1" target="_blank">"Я здесь ненадолго"
+                        <span class="insta-badge">Instagram</span></a>
+                </h3>
+                <div class="play-meta">
+                    <span>📅 03 Июля 2026</span>
+                    <span>⏰ 20:00</span>
+                </div>
+                <p class="play-desc">Стэнли Уэбер живёт с этим ощущением уже три года. Каждый следующий его день до боли похож на предыдущий - волны неустанно омывают захолустное побережье под пансионом, где он уже и не помнит, зачем остановился; хозяйка миссис Боулс безапелляционно приносит ему чашечку чаю по утрам, а единственная связь с цивилизацией - это газета, которую каждое утро читает её муж Пити.</p>
+            </div>
+
+        </div>
+
+        <footer>
+            © 2026 Театр Třesk!. Все права защищены.
+        </footer>
+    </div>
+
+</body>
+
+</html>

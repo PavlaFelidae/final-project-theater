@@ -1,0 +1,11 @@
+myenvtheater/
+db.sqlite3
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.vscode/
+.idea/
+*.log
+.DS_Store
+Thumbs.db

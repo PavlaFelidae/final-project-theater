@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divadlo Třesk</title>
+    <link rel="stylesheet" href="{% static 'theatre_app/css/index.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <a href="/"><img src="{% static 'theatre_app/images/logo-tresk.png' %}" alt="Logo" style="max-height: 50px;"></a>
+        <nav>
+            <a href="/">Главная</a>
+            <a href="/program-page/">Программа</a>
+            <a href="/o-nas/">О нас</a>
+            <a href="/reserve-page/">Билеты</a>
+            <a href="/contacts-page/">Контакты</a>
+            <a href="/partners/">Партнеры</a>
+        </nav>
+    </header>
+
+    <div class="carousel-container">
+        <div class="carousel-slide">
+            <a href="/"><img src="{% static 'theatre_app/images/prosto-ludi-vol2.jpg' %}" alt="Our performers"></a>
+        </div>
+
+        <div class="carousel-slide">
+            <a href="/"><img src="{% static 'theatre_app/images/3performers.jpg' %}" alt="Our performers"></a>
+        </div>
+
+        <div class="carousel-slide">
+            <a href="/"><img src="{% static 'theatre_app/images/2performers.jpg' %}" alt="Our performers"></a>
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Афиша</h2>
+
+        <div class="program-grid" id="live-program">
+            <p style="text-align: center; color: var(--text-muted); grid-column: 1/-1;">Загрузка актуального
+                репертуара...</p>
+        </div>
+
+        <footer>
+            © 2026 Театр Třesk!. Все права защищены.
+        </footer>
+    </div>
+
+
+    <script>
+        // KARUSEL
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("carousel-slide");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+        }
+
+        setInterval(() => {
+            plusSlides(1);
+        }, 5000);
+
+
+        async function fetchLiveProgram() {
+            try {
+                const response = await fetch('/api/program/main/');
+                const data = await response.json();
+
+                const grid = document.getElementById('live-program');
+                grid.innerHTML = '';
+
+                if (data.length === 0) {
+                    grid.innerHTML = '<p style="text-align: center; color: var(--text-muted); grid-column: 1/-1;">На ближайшее время сеансов не запланировано.</p>';
+                    return;
+                }
+
+                data.forEach(perf => {
+                    const card = document.createElement('div');
+                    card.className = 'perf-card';
+
+                    const bgClass = `perf-bg-${perf.id}`;
+
+                    card.innerHTML = `
+        <div class="perf-img-placeholder ${bgClass}"></div>
+        
+        <div class="perf-info">
+            <h3 class="perf-title">${perf.play_title || 'Спектакль'}</h3>
+            <div class="perf-meta">
+                📅 <strong>Дата:</strong> ${perf.date_time || 'Уточняется'}<br>
+                💰 <strong>Цена:</strong> ${perf.price || 0} CZK
+            </div>
+            <a href="/reserve-page/?id=${perf.id}" class="btn-buy">Купить билет</a>
+        </div>
+    `;
+                    grid.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error("Ошибка загрузки афиши:", error);
+                document.getElementById('live-program').innerHTML = '<p style="text-align: center; color: #c62828; grid-column: 1/-1;">Не удалось загрузить актуальную афишу.</p>';
+            }
+        }
+
+        fetchLiveProgram();
+    </script>
+</body>
+
+</html>
