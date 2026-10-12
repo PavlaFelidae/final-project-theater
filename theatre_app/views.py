@@ -15,13 +15,31 @@ from rest_framework.permissions import AllowAny
 class MakeReservationView(APIView):
     permission_classes = [AllowAny]
     authentication_classes = []
+    
     def post(self, request, performance_id):
-        name = request.data.get('name')
+        # Печатаем в терминал всё, что прислал фронтенд
+        print("ДАННЫЕ ОТ ФРОНТЕНДА:", request.data)
+        # Ищем имя по разным возможным ключам, которые мог отправить фронтенд
+        name = (
+            request.data.get('name') or 
+            request.data.get('customer_name') or 
+            request.data.get('username')
+        )
         email = request.data.get('email')
-        seats_count = request.data.get('seats_count') or request.data.get('seats')
+        
+        # Если имя так и не нашлось — сразу говорим об этом пользователю
+        if not name:
+            return Response({"error": "Пожалуйста, укажите ваше имя"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Аналогично проверяем email
+        if not email:
+            return Response({"error": "Пожалуйста, укажите ваш email"}, status=status.HTTP_400_BAD_REQUEST)
+
+        raw_seats = request.data.get('seats_count') or request.data.get('seats')
+        
         try:
-            seats_requested = int(request.data.get('seats_count', 0))
-        except ValueError:
+            seats_requested = int(raw_seats)
+        except (ValueError, TypeError):
             return Response({"error": "Некорректное количество мест"}, status=status.HTTP_400_BAD_REQUEST)
 
         with transaction.atomic():
